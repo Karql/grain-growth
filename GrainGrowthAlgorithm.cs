@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace grain_growth
 {
@@ -10,6 +11,14 @@ namespace grain_growth
         public int Width { set; get; }
         public int Height { set; get; }
         protected Grid grid;
+
+        public Grid Grid
+        {
+            get
+            {
+                return this.grid;
+            }
+        }
 
         public GrainGrowthAlgorithm(int width, int height, bool periodic)
         {
@@ -41,6 +50,76 @@ namespace grain_growth
 
                 c.ID = id++;
             }
+        }
+
+        /// <summary>
+        /// Step of growth
+        /// </summary>
+        /// <returns>true if any changes made</returns>
+        public bool Step()
+        {
+            int changes = 0;
+
+            this.grid.ResetCurrentCellPosition();
+
+            // Iterate cells line by line
+            do
+            {
+                // Grain can grwoth only on empty cell
+                if (this.grid.CurrentCell.ID == 0)
+                {
+                    if (this.Moore())
+                    {
+                        ++changes;
+                    }
+                }
+            } while (this.grid.Next());
+
+            if (changes > 0)
+            {
+                // Copy values  
+                this.grid.CopyNewIDtoID();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Change current cell with Moore rules
+        /// </summary>
+        /// <returns></returns>
+        protected bool Moore()
+        {
+            CounterReturn cr = this.MooreMostCommonCell();
+            
+            if (cr != null)
+            {
+                this.grid.CurrentCell.NewID = cr.ID;
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Look for most common cell of current cell Moore neighborhood
+        /// </summary>
+        /// <returns>Most common cell with count or null</returns>
+        protected CounterReturn MooreMostCommonCell()
+        {
+            Counter counter = new Counter();
+            counter.AddCell(this.grid.NeighborN);
+            counter.AddCell(this.grid.NeighborNE);
+            counter.AddCell(this.grid.NeighborE);
+            counter.AddCell(this.grid.NeighborSE);
+            counter.AddCell(this.grid.NeighborS);
+            counter.AddCell(this.grid.NeighborSW);
+            counter.AddCell(this.grid.NeighborW);
+            counter.AddCell(this.grid.NeighborNW);
+
+            return counter.MostCommonID;
         }
     }
 }

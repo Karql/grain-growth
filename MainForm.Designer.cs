@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.PB = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PB)).BeginInit();
             this.SuspendLayout();
             // 
@@ -37,16 +38,27 @@
             this.PB.BackColor = System.Drawing.Color.White;
             this.PB.Location = new System.Drawing.Point(12, 83);
             this.PB.Name = "PB";
-            this.PB.Size = new System.Drawing.Size(100, 100);
+            this.PB.Size = new System.Drawing.Size(585, 500);
             this.PB.TabIndex = 0;
             this.PB.TabStop = false;
             this.PB.Paint += new System.Windows.Forms.PaintEventHandler(this.PB_Paint);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(41, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 446);
+            this.ClientSize = new System.Drawing.Size(735, 639);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.PB);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -58,6 +70,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox PB;
+        private System.Windows.Forms.Button button1;
     }
 }
 

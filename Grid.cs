@@ -72,7 +72,7 @@ namespace grain_growth
             }
         }
 
-        protected void ResetCurrentCellPosition()
+        public void ResetCurrentCellPosition()
         {
             this.curPosX = 0;
             this.curPosY = 0;
@@ -108,7 +108,7 @@ namespace grain_growth
         /// <summary>
         /// Move NewID value to ID (using after one step of growth)
         /// </summary>
-        public void MoveNewIDtoID()
+        public void CopyNewIDtoID()
         {
             for (int i = 0; i < this.Height; ++i)
             {

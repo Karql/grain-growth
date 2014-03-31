@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cell.cs" />
+    <Compile Include="Counter.cs" />
+    <Compile Include="CounterReturn.cs" />
     <Compile Include="GrainGrowthAlgorithm.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="MainForm.cs">
