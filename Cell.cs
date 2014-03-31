@@ -14,6 +14,10 @@ namespace grain_growth
         /// >1 - grain
         /// </summary>
         public int ID { set; get; }
+        /// <summary>
+        /// For store new id
+        /// </summary>
+        public int NewID { set; get; }
 
         public Cell() : this(0)
         {

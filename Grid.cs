@@ -24,12 +24,12 @@ namespace grain_growth
 
             // Initialize cells
             this.cells = new Cell[height, width];
-            
+
             for (int i = 0; i < height; ++i)
             {
                 for (int j = 0; j < width; ++j)
                 {
-                    this.cells[i,j] = new Cell(1);
+                    this.cells[i, j] = new Cell(1);
                 }
             }
         }
@@ -103,6 +103,20 @@ namespace grain_growth
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Move NewID value to ID (using after one step of growth)
+        /// </summary>
+        public void MoveNewIDtoID()
+        {
+            for (int i = 0; i < this.Height; ++i)
+            {
+                for (int j = 0; j < this.Width; ++j)
+                {
+                    this.cells[i, j].ID = this.cells[i, j].NewID;
+                }
+            }
         }
 
         #region Neighbors
