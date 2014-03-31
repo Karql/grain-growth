@@ -29,7 +29,7 @@ namespace grain_growth
             {
                 for (int j = 0; j < width; ++j)
                 {
-                    this.cells[i, j] = new Cell(1);
+                    this.cells[i, j] = new Cell();
                 }
             }
         }

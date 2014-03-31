@@ -18,5 +18,29 @@ namespace grain_growth
 
             this.grid = new Grid(width, height, periodic);
         }
+
+        /// <summary>
+        /// Add grains in random positions
+        /// </summary>
+        public void AddRandomGrains(int number)
+        {
+            // 0 is null, 1 is inclusion
+            int id = 2;
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < number; ++i)
+            {
+                Cell c;
+
+                // Look for empty cell
+                do
+                {
+                    c = this.grid.GetCell(rnd.Next(this.Width), rnd.Next(this.Height));
+                } while (c.ID != 0);
+
+                c.ID = id++;
+            }
+        }
     }
 }

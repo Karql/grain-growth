@@ -14,6 +14,9 @@ namespace grain_growth
         public MainForm()
         {
             InitializeComponent();
+
+            GrainGrowthAlgorithm gga = new GrainGrowthAlgorithm(10, 10, true);
+            gga.AddRandomGrains(5);
         }
 
         private void PB_Paint(object sender, PaintEventArgs e)
