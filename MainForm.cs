@@ -15,5 +15,10 @@ namespace grain_growth
         {
             InitializeComponent();
         }
+
+        private void PB_Paint(object sender, PaintEventArgs e)
+        {
+            // Paint event
+        }
     }
 }
