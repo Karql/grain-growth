@@ -12,7 +12,7 @@ namespace grain_growth
     public partial class MainForm : Form
     {
         private Grid grid;
-        private GrainGrowthAlgorithm gga;
+        private CellularAutomataAlgorithm gga;
         private MonteCarloAlgorithm mca;
         private Pen[] pens;
         
@@ -24,14 +24,13 @@ namespace grain_growth
             this.grid = new Grid(100, 100, true);
 
             this.mca = new MonteCarloAlgorithm {Grid = this.grid};
-            this.mca.Init(10);
+            //this.mca.Init(10);
 
-            //this.gga = new GrainGrowthAlgorithm(100, 100, true);
-            
-            //this.gga.AddSquareInclusion(10,10,10);
-            //this.gga.AddCircleInclusion(80, 80, 10);
+            this.gga = new CellularAutomataAlgorithm { Grid = this.grid };           
+            ////this.gga.AddSquareInclusion(10,10,10);
+            ////this.gga.AddCircleInclusion(80, 80, 10);
 
-            //this.gga.AddRandomGrains(5);
+            this.gga.AddRandomGrains(5);
 
 
 

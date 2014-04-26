@@ -32,6 +32,14 @@ namespace grain_growth
             }
         }
 
+        public void AddCells(IEnumerable<Cell> cells)
+        {
+            foreach (Cell c in cells)
+            {
+                this.AddCell(c);
+            }
+        }
+
         public CounterReturn MostCommonID
         {
             get
