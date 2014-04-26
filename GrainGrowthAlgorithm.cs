@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
@@ -49,6 +50,19 @@ namespace grain_growth
                 } while (c.ID != 0);
 
                 c.ID = id++;
+            }
+        }
+
+        public void AddSquareInclusion(int x0, int y0, int size)
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                for (int j = 0; j < size; ++j)
+                {
+                    Cell c = this.grid.GetCell(x0 + i, y0 + j);
+                    c.ID = 1;
+                    c.NewID = 1;
+                }
             }
         }
 
