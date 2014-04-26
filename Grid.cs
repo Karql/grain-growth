@@ -68,7 +68,7 @@ namespace grain_growth
 
             else
             {
-                return this.cells[x,y];
+                return this.cells[y,x];
             }
         }
 
@@ -76,6 +76,12 @@ namespace grain_growth
         {
             this.curPosX = 0;
             this.curPosY = 0;
+        }
+
+        public void SetCurrentCellPosition(int x, int y)
+        {
+            this.curPosX = x;
+            this.curPosY = y;
         }
 
         /// <summary>
@@ -188,6 +194,25 @@ namespace grain_growth
         protected Cell GetNeighbor(int diffX, int diffY)
         {
             return this.GetCell(this.curPosX + diffX, this.curPosY + diffY);
+        }
+
+        public Cell[] MoorNeighborhoodOfCurrentCell
+        {
+            get
+            {
+                List<Cell> cells = new List<Cell>();
+
+                cells.Add(this.NeighborN);
+                cells.Add(this.NeighborNE);
+                cells.Add(this.NeighborE);
+                cells.Add(this.NeighborSE);
+                cells.Add(this.NeighborS);
+                cells.Add(this.NeighborSW);
+                cells.Add(this.NeighborW);
+                cells.Add(this.NeighborNW);
+
+                return cells.ToArray();
+            }
         }
         #endregion
     }

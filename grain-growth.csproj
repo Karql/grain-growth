@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmBase.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="CounterReturn.cs" />
@@ -58,6 +59,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MathFunctions.cs" />
+    <Compile Include="MonteCarloAlgorithm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
