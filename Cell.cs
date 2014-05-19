@@ -76,9 +76,14 @@ namespace grain_growth
             get { return this.Neighbors[7]; }
         }
 
-        public Cell[] MoorNeighborhood
+        public IEnumerable<Cell> MoorNeighborhood
         {
             get { return this.Neighbors; }
+        }
+
+        public IEnumerable<Cell> VonNeumannNeighborhood
+        {
+            get { return new Cell[] {this.NeighborN, this.NeighborE, this.NeighborS, this.NeighborW}; }
         }
         #endregion
     }
