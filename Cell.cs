@@ -19,6 +19,11 @@ namespace grain_growth
         /// </summary>
         public int NewID { set; get; }
 
+        /// <summary>
+        /// Neighbors of cell clockwise starts from 12 o'clock
+        /// </summary>
+        public Cell[] Neighbors { set; get; }
+
         public Cell() : this(0)
         {
             ;
@@ -28,5 +33,53 @@ namespace grain_growth
         {
             this.ID = id;
         }
+
+        #region Neighbors
+        // Neighbors of current cell by directions of the world
+        public Cell NeighborN
+        {
+            get { return this.Neighbors[0]; }
+        }
+
+        public Cell NeighborNW
+        {
+            get { return this.Neighbors[1]; }
+        }
+
+        public Cell NeighborW
+        {
+            get { return this.Neighbors[2]; }
+        }
+
+        public Cell NeighborSW
+        {
+            get { return this.Neighbors[3]; }
+        }
+
+        public Cell NeighborS
+        {
+            get { return this.Neighbors[4]; }
+        }
+
+        public Cell NeighborSE
+        {
+            get { return this.Neighbors[5]; }
+        }
+
+        public Cell NeighborE
+        {
+            get { return this.Neighbors[6]; }
+        }
+
+        public Cell NeighborNE
+        {
+            get { return this.Neighbors[7]; }
+        }
+
+        public Cell[] MoorNeighborhood
+        {
+            get { return this.Neighbors; }
+        }
+        #endregion
     }
 }

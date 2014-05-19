@@ -20,8 +20,6 @@ namespace grain_growth
             this.Height = height;
             this.periodic = periodic;
 
-            this.ResetCurrentCellPosition();
-
             // Initialize cells
             this.cells = new Cell[height, width];
 
@@ -32,6 +30,15 @@ namespace grain_growth
                     this.cells[i, j] = new Cell();
                 }
             }
+
+            // Setup neighbors
+            this.ResetCurrentCellPosition();
+
+            do
+            {
+
+                this.CurrentCell.Neighbors = this.NeighborhoodOfCurrentCell;
+            } while (this.Next());
         }
 
         public Cell CurrentCell
@@ -123,6 +130,8 @@ namespace grain_growth
                     this.cells[i, j].ID = this.cells[i, j].NewID;
                 }
             }
+
+            
         }
 
         #region Neighbors
@@ -196,7 +205,7 @@ namespace grain_growth
             return this.GetCell(this.curPosX + diffX, this.curPosY + diffY);
         }
 
-        public Cell[] MoorNeighborhoodOfCurrentCell
+        public Cell[] NeighborhoodOfCurrentCell
         {
             get
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace grain_growth
 {
@@ -37,7 +38,11 @@ namespace grain_growth
                 y = this.random.Next(this.grid.Height);
             }  while (!this.IsCorrectRandomCell(x, y));
 
-            Cell[] cells = this.grid.MoorNeighborhoodOfCurrentCell;
+            Stopwatch s = new Stopwatch();
+
+            s.Start();
+            Cell[] cells = this.grid.NeighborhoodOfCurrentCell;
+            s.Stop();
 
             int[] neighborsId = cells.Where(i => i.ID > 1).Select(i => i.ID).ToArray();
             
@@ -50,6 +55,8 @@ namespace grain_growth
                 this.grid.CurrentCell.ID = newId;
             }
         }
+
+
 
         private bool IsCorrectRandomCell(int x, int y)
         {

@@ -47,7 +47,7 @@ namespace grain_growth
                 // Grain can grwoth only on empty cell
                 if (this.grid.CurrentCell.ID == 0)
                 {
-                    if (this.Moore())
+                    if (this.Moore(this.grid.CurrentCell))
                     {
                         ++changes;
                     }
@@ -69,9 +69,9 @@ namespace grain_growth
         /// Change current cell with Moore rules
         /// </summary>
         /// <returns></returns>
-        protected bool Moore()
+        protected bool Moore(Cell c)
         {
-            CounterReturn cr = this.MooreMostCommonCell();
+            CounterReturn cr = this.MooreMostCommonCell(c);
             
             if (cr != null)
             {
@@ -86,11 +86,11 @@ namespace grain_growth
         /// Look for most common cell of current cell Moore neighborhood
         /// </summary>
         /// <returns>Most common cell with count or null</returns>
-        protected CounterReturn MooreMostCommonCell()
+        protected CounterReturn MooreMostCommonCell(Cell c)
         {
             Counter counter = new Counter();
 
-            counter.AddCells(this.grid.MoorNeighborhoodOfCurrentCell);
+            counter.AddCells(c.MoorNeighborhood);
 
             return counter.MostCommonID;
         }
