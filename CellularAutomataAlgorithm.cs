@@ -24,7 +24,7 @@ namespace grain_growth
                 // Look for empty cell
                 do
                 {
-                    c = this.grid.GetCell(this.random.Next(this.Width), this.random.Next(this.Height));
+                    c = this.grid.GetCell(RandomHelper.Next(this.Width), RandomHelper.Next(this.Height));
                 } while (c.ID != 0);
 
                 c.ID = id++;

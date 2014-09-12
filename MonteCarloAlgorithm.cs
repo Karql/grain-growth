@@ -19,7 +19,7 @@ namespace grain_growth
                 // Nucleon can only be put on empty cell
                 if (this.grid.CurrentCell.ID == 0)
                 {
-                    this.grid.CurrentCell.ID = this.random.Next(randomGrains) + 2; // + 2 empty, inclusion 
+                    this.grid.CurrentCell.ID = RandomHelper.Next(randomGrains) + 2; // + 2 empty, inclusion 
                 }
             } while (this.grid.Next());
         }
@@ -31,7 +31,7 @@ namespace grain_growth
                 int[] neighborsId = c.MoorNeighborhood.Where(i => i.ID > 1).Select(i => i.ID).ToArray();
 
                 int e1 = neighborsId.Where(i => i != c.ID).Count();
-                int newId = neighborsId[this.random.Next(neighborsId.Length)];
+                int newId = neighborsId[RandomHelper.Next(neighborsId.Length)];
                 int e2 = neighborsId.Where(i => i != newId).Count();
 
                 if (e2 - e1 <= 0)
@@ -56,7 +56,7 @@ namespace grain_growth
             } while (this.grid.Next());
 
             // Random order
-            return cells.OrderBy(i => this.random.Next());            
+            return cells.OrderBy(i => RandomHelper.Next());            
         }
         
         private bool IsCorrectRandomCell(Cell cell)

@@ -10,7 +10,7 @@ namespace grain_growth
         public int Width { set; get; }
         public int Height { set; get; }
         protected Grid grid;
-        protected Random random = new Random();
+        //protected Random random = new Random();
 
         public Grid Grid
         {
