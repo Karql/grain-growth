@@ -41,11 +41,18 @@
             this.gridWidthNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.gridHeightNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.gridHeightLabel = new System.Windows.Forms.Label();
+            this.inclusionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.inclusionCircleButton = new System.Windows.Forms.Button();
+            this.inclusionSquareButton = new System.Windows.Forms.Button();
+            this.inclusionRadiusNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.inclusionRadiusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PB)).BeginInit();
             this.gridGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridZoomNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridWidthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHeightNumericUpDown)).BeginInit();
+            this.inclusionsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inclusionRadiusNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // PB
@@ -56,11 +63,12 @@
             this.PB.Size = new System.Drawing.Size(100, 100);
             this.PB.TabIndex = 0;
             this.PB.TabStop = false;
+            this.PB.Click += new System.EventHandler(this.PB_Click);
             this.PB.Paint += new System.Windows.Forms.PaintEventHandler(this.PB_Paint);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(268, 47);
+            this.button1.Location = new System.Drawing.Point(427, 99);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -70,7 +78,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(379, 47);
+            this.button2.Location = new System.Drawing.Point(448, 47);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -80,7 +88,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(505, 47);
+            this.button3.Location = new System.Drawing.Point(580, 54);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 3;
@@ -99,7 +107,7 @@
             this.gridGroupBox.Controls.Add(this.gridHeightLabel);
             this.gridGroupBox.Location = new System.Drawing.Point(12, 12);
             this.gridGroupBox.Name = "gridGroupBox";
-            this.gridGroupBox.Size = new System.Drawing.Size(126, 119);
+            this.gridGroupBox.Size = new System.Drawing.Size(131, 119);
             this.gridGroupBox.TabIndex = 4;
             this.gridGroupBox.TabStop = false;
             this.gridGroupBox.Text = "Grid";
@@ -127,7 +135,7 @@
             0,
             0});
             this.gridZoomNumericUpDown.Name = "gridZoomNumericUpDown";
-            this.gridZoomNumericUpDown.Size = new System.Drawing.Size(59, 20);
+            this.gridZoomNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.gridZoomNumericUpDown.TabIndex = 6;
             this.gridZoomNumericUpDown.Value = new decimal(new int[] {
             1,
@@ -174,7 +182,7 @@
             0,
             0});
             this.gridWidthNumericUpDown.Name = "gridWidthNumericUpDown";
-            this.gridWidthNumericUpDown.Size = new System.Drawing.Size(59, 20);
+            this.gridWidthNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.gridWidthNumericUpDown.TabIndex = 2;
             this.gridWidthNumericUpDown.Value = new decimal(new int[] {
             100,
@@ -192,7 +200,7 @@
             0,
             0});
             this.gridHeightNumericUpDown.Name = "gridHeightNumericUpDown";
-            this.gridHeightNumericUpDown.Size = new System.Drawing.Size(59, 20);
+            this.gridHeightNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.gridHeightNumericUpDown.TabIndex = 1;
             this.gridHeightNumericUpDown.Value = new decimal(new int[] {
             100,
@@ -210,11 +218,77 @@
             this.gridHeightLabel.TabIndex = 0;
             this.gridHeightLabel.Text = "Height:";
             // 
+            // inclusionsGroupBox
+            // 
+            this.inclusionsGroupBox.Controls.Add(this.inclusionCircleButton);
+            this.inclusionsGroupBox.Controls.Add(this.inclusionSquareButton);
+            this.inclusionsGroupBox.Controls.Add(this.inclusionRadiusNumericUpDown);
+            this.inclusionsGroupBox.Controls.Add(this.inclusionRadiusLabel);
+            this.inclusionsGroupBox.Location = new System.Drawing.Point(149, 12);
+            this.inclusionsGroupBox.Name = "inclusionsGroupBox";
+            this.inclusionsGroupBox.Size = new System.Drawing.Size(128, 119);
+            this.inclusionsGroupBox.TabIndex = 5;
+            this.inclusionsGroupBox.TabStop = false;
+            this.inclusionsGroupBox.Text = "Inclusions";
+            // 
+            // inclusionCircleButton
+            // 
+            this.inclusionCircleButton.BackColor = System.Drawing.SystemColors.Control;
+            this.inclusionCircleButton.Location = new System.Drawing.Point(9, 76);
+            this.inclusionCircleButton.Name = "inclusionCircleButton";
+            this.inclusionCircleButton.Size = new System.Drawing.Size(106, 23);
+            this.inclusionCircleButton.TabIndex = 10;
+            this.inclusionCircleButton.Text = "Circle";
+            this.inclusionCircleButton.UseVisualStyleBackColor = false;
+            this.inclusionCircleButton.Click += new System.EventHandler(this.stateButton_Click);
+            // 
+            // inclusionSquareButton
+            // 
+            this.inclusionSquareButton.Location = new System.Drawing.Point(9, 47);
+            this.inclusionSquareButton.Name = "inclusionSquareButton";
+            this.inclusionSquareButton.Size = new System.Drawing.Size(106, 23);
+            this.inclusionSquareButton.TabIndex = 9;
+            this.inclusionSquareButton.Text = "Square";
+            this.inclusionSquareButton.UseVisualStyleBackColor = false;
+            this.inclusionSquareButton.Click += new System.EventHandler(this.stateButton_Click);
+            // 
+            // inclusionRadiusNumericUpDown
+            // 
+            this.inclusionRadiusNumericUpDown.Location = new System.Drawing.Point(55, 19);
+            this.inclusionRadiusNumericUpDown.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.inclusionRadiusNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.inclusionRadiusNumericUpDown.Name = "inclusionRadiusNumericUpDown";
+            this.inclusionRadiusNumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.inclusionRadiusNumericUpDown.TabIndex = 8;
+            this.inclusionRadiusNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // inclusionRadiusLabel
+            // 
+            this.inclusionRadiusLabel.AutoSize = true;
+            this.inclusionRadiusLabel.Location = new System.Drawing.Point(6, 21);
+            this.inclusionRadiusLabel.Name = "inclusionRadiusLabel";
+            this.inclusionRadiusLabel.Size = new System.Drawing.Size(43, 13);
+            this.inclusionRadiusLabel.TabIndex = 0;
+            this.inclusionRadiusLabel.Text = "Radius:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 639);
+            this.Controls.Add(this.inclusionsGroupBox);
             this.Controls.Add(this.gridGroupBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -228,6 +302,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridZoomNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridWidthNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHeightNumericUpDown)).EndInit();
+            this.inclusionsGroupBox.ResumeLayout(false);
+            this.inclusionsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inclusionRadiusNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -247,6 +324,11 @@
         private System.Windows.Forms.NumericUpDown gridZoomNumericUpDown;
         private System.Windows.Forms.Label gridPeriodicLabel;
         private System.Windows.Forms.CheckBox gridPeriodicCheckBox;
+        private System.Windows.Forms.GroupBox inclusionsGroupBox;
+        private System.Windows.Forms.Button inclusionCircleButton;
+        private System.Windows.Forms.Button inclusionSquareButton;
+        private System.Windows.Forms.NumericUpDown inclusionRadiusNumericUpDown;
+        private System.Windows.Forms.Label inclusionRadiusLabel;
     }
 }
 

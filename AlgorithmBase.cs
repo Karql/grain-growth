@@ -5,7 +5,7 @@ using System.Text;
 
 namespace grain_growth
 {
-    public abstract class AlgorithmBase
+    public class AlgorithmBase
     {
         public int Width { set; get; }
         public int Height { set; get; }
