@@ -20,8 +20,9 @@ namespace grain_growth
 
         public void AddCell(Cell cell)
         {
-            // 0 - null, 1 - inclusion
-            if ( cell.ID > 1 )
+            // 0 - null, 1 - inclusion 
+            // Selected grains can not grow
+            if ( cell.ID > 1 && !cell.Selected )
             {
                 if ( !this.counter.ContainsKey(cell.ID) )
                 {

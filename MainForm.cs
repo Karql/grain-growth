@@ -39,57 +39,68 @@ namespace grain_growth
         {
             get { return (int)this.inclusionRadiusNumericUpDown.Value; }
         }
+
+        private int CAGrians
+        {
+            get { return (int)this.caGrainsNumericUpDown.Value; }
+        }
+
+        private int MCGrians
+        {
+            get { return (int)this.mcGrainsNumericUpDown.Value; }
+        }
+
+        private int MCSteps
+        {
+            get { return (int)this.mcStepsNumericUpDown.Value; }
+        }
+
+        private bool DPChangeId
+        {
+            get { return this.dpChangeIdCheckBox.Checked; }
+        }
         #endregion Properties
 
         private Grid grid;
-        private CellularAutomataAlgorithm gga;
-        private MonteCarloAlgorithm mca;
+        private CellularAutomataAlgorithm ca;
+        private MonteCarloAlgorithm mc;
         private List<Brush> brushes;
 
         // Store all UI stateButtons 
-        private delegate void PBClickLogic(int x, int y);
-        private Dictionary<Button, PBClickLogic> stateButtons;
+        
+        private Dictionary<Button, StateButtonEvents> stateButtons;
         private Button activeStateButton = null;
         
         public MainForm()
         {
+            this.ca = new CellularAutomataAlgorithm();
+            this.mc = new MonteCarloAlgorithm();
+
             InitializeComponent();
+            this.SetupUI();
             this.SetupBrushes();
             this.SetupGrid();
             this.SetupStateButtons();
 
             //this.grid = new Grid(100, 100, false);
 
-            this.mca = new MonteCarloAlgorithm {Grid = this.grid};
-            this.mca.AddSquareInclusion(10, 10, 10);
-            this.mca.AddCircleInclusion(80, 80, 10);
-            this.mca.Init(5);
+            //this.mc = new MonteCarloAlgorithm {Grid = this.grid};
+            //this.mc.AddSquareInclusion(10, 10, 10);
+            //this.mc.AddCircleInclusion(80, 80, 10);
+            //this.mc.Init(5);
 
-            this.gga = new CellularAutomataAlgorithm { Grid = this.grid };           
-            ////this.gga.AddSquareInclusion(10,10,10);
-            ////this.gga.AddCircleInclusion(80, 80, 10);
-            //this.gga.AddRandomGrains(5);
+            //this.ca = new CellularAutomataAlgorithm { Grid = this.grid };           
+            ////this.ca.AddSquareInclusion(10,10,10);
+            ////this.ca.AddCircleInclusion(80, 80, 10);
+            //this.ca.AddRandomGrains(5);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SetupUI()
         {
-            while (this.gga.Step())
-            {
-                this.PB.Refresh();
-            }
+            this.caNeighborhoodComboBox.SelectedIndex = 0;
+            this.mcNeighborhoodComboBox.SelectedIndex = 0;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < 50; ++i)
-            {
-                this.mca.Step();
-                this.PB.Refresh();
-            }
-
-            this.mca.AddSquareInclusion(30, 30, 10);
-            this.PB.Refresh();
-        }
 
         private void girdProperties_Changed(object sender, EventArgs e)
         {
@@ -105,6 +116,8 @@ namespace grain_growth
         private void SetupGrid()
         {
             this.grid = new Grid(this.GridWidth, this.GridHeight, this.GridPeriodic);
+            this.ca.Grid = this.grid;
+            this.mc.Grid = this.grid;
             this.SetupPB();
         }
 
@@ -142,10 +155,11 @@ namespace grain_growth
 
         private void SetupStateButtons()
         {
-            this.stateButtons = new Dictionary<Button, PBClickLogic>();
+            this.stateButtons = new Dictionary<Button, StateButtonEvents>();
 
-            this.stateButtons.Add(this.inclusionCircleButton, AddCircleInclusion);
-            this.stateButtons.Add(this.inclusionSquareButton, AddSquareInclusion);
+            this.stateButtons.Add(this.inclusionCircleButton, new StateButtonEvents{ PBClick = AddCircleInclusion });
+            this.stateButtons.Add(this.inclusionSquareButton, new StateButtonEvents { PBClick = AddSquareInclusion });
+            this.stateButtons.Add(this.dpSelectButton, new StateButtonEvents { PBClick = SelectGrain, On = SelectGrain_Start, Off = SelectGrain_End });
         }
 
         private void PB_Paint(object sender, PaintEventArgs e)
@@ -175,9 +189,9 @@ namespace grain_growth
             int y = me.Y / this.GridZoom;
 
             // Call logic for specific state button
-            if (this.activeStateButton != null && this.stateButtons.ContainsKey(this.activeStateButton))
+            if (this.activeStateButton != null && this.stateButtons.ContainsKey(this.activeStateButton) && this.stateButtons[this.activeStateButton].PBClick != null)
             {
-                this.stateButtons[this.activeStateButton](x, y);
+                this.stateButtons[this.activeStateButton].PBClick(x, y);
                 this.PB.Refresh();
             }
         }
@@ -192,12 +206,24 @@ namespace grain_growth
             
             Button clickedButton = sender as Button;
 
+            // Off logic for prevoius button 
+            if (this.activeStateButton != null && this.stateButtons.ContainsKey(this.activeStateButton) && this.stateButtons[this.activeStateButton].Off != null)
+            {
+                this.stateButtons[this.activeStateButton].Off();
+            }
+
             // Click in different button
             if (this.activeStateButton != clickedButton)
             {
                 this.activeStateButton = clickedButton;
                 clickedButton.BackColor = SystemColors.Highlight;
                 clickedButton.ForeColor = SystemColors.HighlightText;
+
+                // On logic
+                if (this.activeStateButton != null && this.stateButtons.ContainsKey(this.activeStateButton) && this.stateButtons[this.activeStateButton].On != null)
+                {
+                    this.stateButtons[this.activeStateButton].On();
+                }
             }
 
             // Unclick active button
@@ -209,15 +235,62 @@ namespace grain_growth
 
         private void AddCircleInclusion(int x, int y)
         {
-            AlgorithmBase ab = new AlgorithmBase {Grid = this.grid};
-            ab.AddCircleInclusion(x, y, this.InclusionRadius);
+            // Method from AlgorithmBase
+            this.ca.AddCircleInclusion(x, y, this.InclusionRadius);
         }
 
         private void AddSquareInclusion(int x, int y)
         {
-            AlgorithmBase ab = new AlgorithmBase { Grid = this.grid };
-            ab.AddSquareInclusion(x, y, this.InclusionRadius); ;
+            // Method from AlgorithmBase
+            this.ca.AddSquareInclusion(x, y, this.InclusionRadius); ;
         }
+
+        private void SelectGrain_Start()
+        {
+            this.ca.StartSelectGrains(this.DPChangeId);
+        }
+
+        private void SelectGrain(int x, int y)
+        {
+            this.ca.SelectGrain(x, y);
+            this.PB.Refresh();
+        }
+
+        private void SelectGrain_End()
+        {
+            this.ca.EndSelectGrains();
+            this.PB.Refresh();
+        }
+
         #endregion PB click logic
+
+        private void caAddRandomGrainsButton_Click(object sender, EventArgs e)
+        {
+            this.ca.AddRandomGrains(this.CAGrians);
+            this.PB.Refresh();
+        }
+
+        private void caSimulateButton_Click(object sender, EventArgs e)
+        {
+            while (this.ca.Step())
+            {
+                this.PB.Refresh();
+            }
+        }
+
+        private void mcInitRandomGrainsButton_Click(object sender, EventArgs e)
+        {
+            this.mc.Init(this.MCGrians);
+            this.PB.Refresh();
+        }
+
+        private void mcSimulateButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.MCSteps; ++i)
+            {
+                this.mc.Step();
+                this.PB.Refresh();
+            }
+        }
     }
 }

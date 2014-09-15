@@ -11,6 +11,8 @@ namespace grain_growth
     {
         public void Init(int randomGrains)
         {
+            int[] notUsedIds = this.GetNotUsedIds().Take(randomGrains).ToArray();
+
             this.grid.ResetCurrentCellPosition();
 
             // Iterate cells line by line
@@ -19,7 +21,7 @@ namespace grain_growth
                 // Nucleon can only be put on empty cell
                 if (this.grid.CurrentCell.ID == 0)
                 {
-                    this.grid.CurrentCell.ID = RandomHelper.Next(randomGrains) + 2; // + 2 empty, inclusion 
+                    this.grid.CurrentCell.ID = notUsedIds[RandomHelper.Next(randomGrains)];
                 }
             } while (this.grid.Next());
         }
@@ -61,7 +63,7 @@ namespace grain_growth
         
         private bool IsCorrectRandomCell(Cell cell)
         {
-            return cell.ID > 1 && cell.MoorNeighborhood.Where(i => i.ID != cell.ID).Count() > 0;
+            return cell.ID > 1 && !cell.Selected && cell.MoorNeighborhood.Where(i => i.ID != cell.ID).Count() > 0;
         }
     }
 }

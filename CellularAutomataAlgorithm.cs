@@ -14,20 +14,28 @@ namespace grain_growth
         /// </summary>
         public void AddRandomGrains(int number)
         {
-            // 0 is null, 1 is inclusion
-            int id = 2;
+            int[] notUsedIds = this.GetNotUsedIds();
 
             for (int i = 0; i < number; ++i)
             {
-                Cell c;
-
-                // Look for empty cell
-                do
+                if (i < notUsedIds.Length)
                 {
-                    c = this.grid.GetCell(RandomHelper.Next(this.Width), RandomHelper.Next(this.Height));
-                } while (c.ID != 0);
+                    Cell c;
 
-                c.ID = id++;
+                    // Look for empty cell
+                    do
+                    {
+                        c = this.grid.GetCell(RandomHelper.Next(this.Width), RandomHelper.Next(this.Height));
+                    } while (c.ID != 0 || c.Selected);
+
+                    c.ID = notUsedIds[i];
+                }
+
+                else
+                {
+                    // No more id
+                    break;
+                }
             }
         }
 

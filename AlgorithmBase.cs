@@ -7,9 +7,11 @@ namespace grain_growth
 {
     public class AlgorithmBase
     {
+        private const int MAX_GRAIN_ID = 140; // Number of colors :)
         public int Width { set; get; }
         public int Height { set; get; }
         protected Grid grid;
+        protected int? idForSelectedGrain;
         //protected Random random = new Random();
 
         public Grid Grid
@@ -25,6 +27,94 @@ namespace grain_growth
                 this.Width = this.grid.Width;
                 this.Height = this.grid.Height;
             }
+        }
+        
+        public int[] GetNotUsedIds()
+        {            
+            bool[] usesArr = Enumerable.Repeat(false, MAX_GRAIN_ID).ToArray();
+
+            usesArr[0] = true; // empty
+            usesArr[1] = true; // inclusion
+
+            this.grid.ResetCurrentCellPosition();
+            
+            // Iterate cells line by line
+            do
+            {
+                usesArr[this.grid.CurrentCell.ID] = true;
+
+            } while (this.grid.Next());
+
+            List<int> ret = new List<int>();
+
+            for (int i = 0; i < usesArr.Length; ++i)
+            {
+                if ( usesArr[i] == false)
+                    ret.Add(i);
+            }
+
+            return ret.ToArray();
+        }
+
+        public void StartSelectGrains(bool changeId)
+        {
+            if (changeId)
+            {
+                this.idForSelectedGrain = this.GetNotUsedIds().First();
+            }
+
+            else
+            {
+                this.idForSelectedGrain = null;
+            }
+
+            this.grid.ResetCurrentCellPosition();
+
+            // Reset selected state
+            do
+            {
+                this.grid.CurrentCell.Selected = false;
+            } while (this.grid.Next());
+        }
+
+        public void SelectGrain(int x, int y)
+        {
+            int selectedId = this.grid.GetCell(x, y).ID;
+
+            // TODO: look for the same id neighboors instead of all cells
+
+            this.grid.ResetCurrentCellPosition();
+
+            do
+            {
+                if (this.grid.CurrentCell.ID == selectedId)
+                {
+                    this.grid.CurrentCell.Selected = true;
+
+                    if (this.idForSelectedGrain.HasValue)
+                    {
+                        this.grid.CurrentCell.ID = this.idForSelectedGrain.Value;
+                        this.grid.CurrentCell.NewID = this.idForSelectedGrain.Value;
+                    }
+                }
+            } while (this.grid.Next());
+        }
+
+        /// <summary>
+        /// Removes not selected grains
+        /// </summary>
+        public void EndSelectGrains()
+        {
+            this.grid.ResetCurrentCellPosition();
+
+            do
+            {
+                if (!this.grid.CurrentCell.Selected && this.grid.CurrentCell.ID > 1) // 0 - empty cell, 1 - inclusion
+                {
+                    this.grid.CurrentCell.ID = 0;
+                    this.grid.CurrentCell.NewID = 0;
+                }
+            } while (this.grid.Next());
         }
 
         /// <summary>

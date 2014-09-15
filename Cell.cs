@@ -18,6 +18,10 @@ namespace grain_growth
         /// For store new id
         /// </summary>
         public int NewID { set; get; }
+        /// <summary>
+        /// Select for dual phase (do not change more)
+        /// </summary>
+        public bool Selected { set; get; }
 
         /// <summary>
         /// Neighbors of cell clockwise starts from 12 o'clock
