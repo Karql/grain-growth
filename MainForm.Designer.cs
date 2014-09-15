@@ -60,9 +60,11 @@
             this.mcGrainsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.mcGrainsLabel = new System.Windows.Forms.Label();
             this.dpGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dpChangeIdCheckBox = new System.Windows.Forms.CheckBox();
             this.dpSelectButton = new System.Windows.Forms.Button();
+            this.dpChangeIdCheckBox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PB)).BeginInit();
             this.gridGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridZoomNumericUpDown)).BeginInit();
@@ -297,7 +299,10 @@
             this.caNeighborhoodComboBox.FormattingEnabled = true;
             this.caNeighborhoodComboBox.Items.AddRange(new object[] {
             "Moorea\'a",
-            "Von Neumann\'a"});
+            "Von Neumann\'a",
+            "Hex Random",
+            "Penta Random",
+            "Further Moor"});
             this.caNeighborhoodComboBox.Location = new System.Drawing.Point(98, 48);
             this.caNeighborhoodComboBox.Name = "caNeighborhoodComboBox";
             this.caNeighborhoodComboBox.Size = new System.Drawing.Size(83, 21);
@@ -401,7 +406,10 @@
             this.mcNeighborhoodComboBox.FormattingEnabled = true;
             this.mcNeighborhoodComboBox.Items.AddRange(new object[] {
             "Moorea\'a",
-            "Von Neumann\'a"});
+            "Von Neumann\'a",
+            "Hex Random",
+            "Penta Random",
+            "Further Moor"});
             this.mcNeighborhoodComboBox.Location = new System.Drawing.Point(98, 48);
             this.mcNeighborhoodComboBox.Name = "mcNeighborhoodComboBox";
             this.mcNeighborhoodComboBox.Size = new System.Drawing.Size(83, 21);
@@ -469,14 +477,16 @@
             this.dpGroupBox.TabStop = false;
             this.dpGroupBox.Text = "Dual Phase";
             // 
-            // label1
+            // dpSelectButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Change id:";
+            this.dpSelectButton.BackColor = System.Drawing.SystemColors.Control;
+            this.dpSelectButton.Location = new System.Drawing.Point(9, 46);
+            this.dpSelectButton.Name = "dpSelectButton";
+            this.dpSelectButton.Size = new System.Drawing.Size(76, 23);
+            this.dpSelectButton.TabIndex = 2;
+            this.dpSelectButton.Text = "Select";
+            this.dpSelectButton.UseVisualStyleBackColor = false;
+            this.dpSelectButton.Click += new System.EventHandler(this.stateButton_Click);
             // 
             // dpChangeIdCheckBox
             // 
@@ -489,22 +499,42 @@
             this.dpChangeIdCheckBox.TabIndex = 1;
             this.dpChangeIdCheckBox.UseVisualStyleBackColor = true;
             // 
-            // dpSelectButton
+            // label1
             // 
-            this.dpSelectButton.BackColor = System.Drawing.SystemColors.Control;
-            this.dpSelectButton.Location = new System.Drawing.Point(9, 46);
-            this.dpSelectButton.Name = "dpSelectButton";
-            this.dpSelectButton.Size = new System.Drawing.Size(76, 23);
-            this.dpSelectButton.TabIndex = 2;
-            this.dpSelectButton.Text = "Select";
-            this.dpSelectButton.UseVisualStyleBackColor = false;
-            this.dpSelectButton.Click += new System.EventHandler(this.stateButton_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Change id:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(813, 98);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(822, 137);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 639);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dpGroupBox);
             this.Controls.Add(this.mcGroupBox);
             this.Controls.Add(this.caGroupBox);
@@ -572,6 +602,8 @@
         private System.Windows.Forms.Button dpSelectButton;
         private System.Windows.Forms.CheckBox dpChangeIdCheckBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

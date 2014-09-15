@@ -64,6 +64,7 @@ namespace grain_growth
         private Grid grid;
         private CellularAutomataAlgorithm ca;
         private MonteCarloAlgorithm mc;
+        private SRXAlgorithm srx;
         private List<Brush> brushes;
 
         // Store all UI stateButtons 
@@ -75,6 +76,7 @@ namespace grain_growth
         {
             this.ca = new CellularAutomataAlgorithm();
             this.mc = new MonteCarloAlgorithm();
+            this.srx = new SRXAlgorithm();
 
             InitializeComponent();
             this.SetupUI();
@@ -118,6 +120,7 @@ namespace grain_growth
             this.grid = new Grid(this.GridWidth, this.GridHeight, this.GridPeriodic);
             this.ca.Grid = this.grid;
             this.mc.Grid = this.grid;
+            this.srx.Grid = this.grid;
             this.SetupPB();
         }
 
@@ -291,6 +294,19 @@ namespace grain_growth
                 this.mc.Step();
                 this.PB.Refresh();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.srx.AddNucleations(10);
+            this.PB.Refresh();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.srx.Step();
+            this.PB.Refresh();
         }
     }
 }
