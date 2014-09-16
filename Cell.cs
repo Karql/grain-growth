@@ -25,7 +25,7 @@ namespace grain_growth
 
         public bool Recrystalized { set; get; }
 
-        public int Energy { set; get; }
+        public double Energy { set; get; }
         /// <summary>
         /// Neighbors of cell clockwise starts from 12 o'clock
         /// </summary>

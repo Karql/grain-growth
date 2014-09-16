@@ -63,8 +63,26 @@
             this.dpSelectButton = new System.Windows.Forms.Button();
             this.dpChangeIdCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.srxGroupBox = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.srxAddTimesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.srxSimulateButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.srxStepsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.srxAddEveryStepsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.srxNucleationsDiffNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.srxNucleationsAtStartNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.srxNucleationsAdditionsComboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.srxEnergyValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.srxEnergyDistributionComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.srxHighlightRecrystalizedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PB)).BeginInit();
             this.gridGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridZoomNumericUpDown)).BeginInit();
@@ -78,6 +96,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.mcStepsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mcGrainsNumericUpDown)).BeginInit();
             this.dpGroupBox.SuspendLayout();
+            this.srxGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.srxAddTimesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxStepsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxAddEveryStepsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxNucleationsDiffNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxNucleationsAtStartNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxEnergyValueNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // PB
@@ -387,7 +412,7 @@
             this.mcStepsNumericUpDown.Size = new System.Drawing.Size(40, 20);
             this.mcStepsNumericUpDown.TabIndex = 7;
             this.mcStepsNumericUpDown.Value = new decimal(new int[] {
-            100,
+            20,
             0,
             0,
             0});
@@ -508,33 +533,239 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Change id:";
             // 
-            // button1
+            // srxGroupBox
             // 
-            this.button1.Location = new System.Drawing.Point(813, 98);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.srxGroupBox.Controls.Add(this.srxHighlightRecrystalizedCheckBox);
+            this.srxGroupBox.Controls.Add(this.label10);
+            this.srxGroupBox.Controls.Add(this.label9);
+            this.srxGroupBox.Controls.Add(this.srxAddTimesNumericUpDown);
+            this.srxGroupBox.Controls.Add(this.srxSimulateButton);
+            this.srxGroupBox.Controls.Add(this.label8);
+            this.srxGroupBox.Controls.Add(this.srxStepsNumericUpDown);
+            this.srxGroupBox.Controls.Add(this.label7);
+            this.srxGroupBox.Controls.Add(this.srxAddEveryStepsNumericUpDown);
+            this.srxGroupBox.Controls.Add(this.label6);
+            this.srxGroupBox.Controls.Add(this.srxNucleationsDiffNumericUpDown);
+            this.srxGroupBox.Controls.Add(this.label5);
+            this.srxGroupBox.Controls.Add(this.srxNucleationsAtStartNumericUpDown);
+            this.srxGroupBox.Controls.Add(this.srxNucleationsAdditionsComboBox);
+            this.srxGroupBox.Controls.Add(this.label4);
+            this.srxGroupBox.Controls.Add(this.srxEnergyValueNumericUpDown);
+            this.srxGroupBox.Controls.Add(this.label3);
+            this.srxGroupBox.Controls.Add(this.srxEnergyDistributionComboBox);
+            this.srxGroupBox.Controls.Add(this.label2);
+            this.srxGroupBox.Location = new System.Drawing.Point(478, 137);
+            this.srxGroupBox.Name = "srxGroupBox";
+            this.srxGroupBox.Size = new System.Drawing.Size(287, 326);
+            this.srxGroupBox.TabIndex = 12;
+            this.srxGroupBox.TabStop = false;
+            this.srxGroupBox.Text = "SRX";
             // 
-            // button2
+            // label9
             // 
-            this.button2.Location = new System.Drawing.Point(822, 137);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 192);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Add times";
+            // 
+            // srxAddTimesNumericUpDown
+            // 
+            this.srxAddTimesNumericUpDown.Location = new System.Drawing.Point(123, 190);
+            this.srxAddTimesNumericUpDown.Name = "srxAddTimesNumericUpDown";
+            this.srxAddTimesNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.srxAddTimesNumericUpDown.TabIndex = 17;
+            this.srxAddTimesNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // srxSimulateButton
+            // 
+            this.srxSimulateButton.Location = new System.Drawing.Point(9, 285);
+            this.srxSimulateButton.Name = "srxSimulateButton";
+            this.srxSimulateButton.Size = new System.Drawing.Size(75, 23);
+            this.srxSimulateButton.TabIndex = 16;
+            this.srxSimulateButton.Text = "Simulate";
+            this.srxSimulateButton.UseVisualStyleBackColor = true;
+            this.srxSimulateButton.Click += new System.EventHandler(this.srxSimulateButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 229);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "SRX steeps:";
+            // 
+            // srxStepsNumericUpDown
+            // 
+            this.srxStepsNumericUpDown.Location = new System.Drawing.Point(123, 227);
+            this.srxStepsNumericUpDown.Name = "srxStepsNumericUpDown";
+            this.srxStepsNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.srxStepsNumericUpDown.TabIndex = 14;
+            this.srxStepsNumericUpDown.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 165);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Add every steps:";
+            // 
+            // srxAddEveryStepsNumericUpDown
+            // 
+            this.srxAddEveryStepsNumericUpDown.Location = new System.Drawing.Point(123, 163);
+            this.srxAddEveryStepsNumericUpDown.Name = "srxAddEveryStepsNumericUpDown";
+            this.srxAddEveryStepsNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.srxAddEveryStepsNumericUpDown.TabIndex = 12;
+            this.srxAddEveryStepsNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 139);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Nucleations diff:";
+            // 
+            // srxNucleationsDiffNumericUpDown
+            // 
+            this.srxNucleationsDiffNumericUpDown.Location = new System.Drawing.Point(123, 137);
+            this.srxNucleationsDiffNumericUpDown.Name = "srxNucleationsDiffNumericUpDown";
+            this.srxNucleationsDiffNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.srxNucleationsDiffNumericUpDown.TabIndex = 10;
+            this.srxNucleationsDiffNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Nucleations at start:";
+            // 
+            // srxNucleationsAtStartNumericUpDown
+            // 
+            this.srxNucleationsAtStartNumericUpDown.Location = new System.Drawing.Point(123, 111);
+            this.srxNucleationsAtStartNumericUpDown.Name = "srxNucleationsAtStartNumericUpDown";
+            this.srxNucleationsAtStartNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.srxNucleationsAtStartNumericUpDown.TabIndex = 8;
+            this.srxNucleationsAtStartNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // srxNucleationsAdditionsComboBox
+            // 
+            this.srxNucleationsAdditionsComboBox.FormattingEnabled = true;
+            this.srxNucleationsAdditionsComboBox.Items.AddRange(new object[] {
+            "At beggining",
+            "Constant",
+            "Increasing",
+            "Decreasing"});
+            this.srxNucleationsAdditionsComboBox.Location = new System.Drawing.Point(123, 84);
+            this.srxNucleationsAdditionsComboBox.Name = "srxNucleationsAdditionsComboBox";
+            this.srxNucleationsAdditionsComboBox.Size = new System.Drawing.Size(121, 21);
+            this.srxNucleationsAdditionsComboBox.TabIndex = 7;
+            this.srxNucleationsAdditionsComboBox.SelectedIndexChanged += new System.EventHandler(this.srxNucleationsAdditionsComboBox_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Nucleations additions:";
+            // 
+            // srxEnergyValueNumericUpDown
+            // 
+            this.srxEnergyValueNumericUpDown.DecimalPlaces = 2;
+            this.srxEnergyValueNumericUpDown.Location = new System.Drawing.Point(123, 47);
+            this.srxEnergyValueNumericUpDown.Name = "srxEnergyValueNumericUpDown";
+            this.srxEnergyValueNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.srxEnergyValueNumericUpDown.TabIndex = 4;
+            this.srxEnergyValueNumericUpDown.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            65536});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Energy value:";
+            // 
+            // srxEnergyDistributionComboBox
+            // 
+            this.srxEnergyDistributionComboBox.FormattingEnabled = true;
+            this.srxEnergyDistributionComboBox.Items.AddRange(new object[] {
+            "Homogenous",
+            "Heterogenous"});
+            this.srxEnergyDistributionComboBox.Location = new System.Drawing.Point(123, 18);
+            this.srxEnergyDistributionComboBox.Name = "srxEnergyDistributionComboBox";
+            this.srxEnergyDistributionComboBox.Size = new System.Drawing.Size(121, 21);
+            this.srxEnergyDistributionComboBox.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Energy distribution:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 262);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(112, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Highlight recrystalized:";
+            // 
+            // srxHighlightRecrystalizedCheckBox
+            // 
+            this.srxHighlightRecrystalizedCheckBox.AutoSize = true;
+            this.srxHighlightRecrystalizedCheckBox.Location = new System.Drawing.Point(123, 261);
+            this.srxHighlightRecrystalizedCheckBox.Name = "srxHighlightRecrystalizedCheckBox";
+            this.srxHighlightRecrystalizedCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.srxHighlightRecrystalizedCheckBox.TabIndex = 20;
+            this.srxHighlightRecrystalizedCheckBox.UseVisualStyleBackColor = true;
+            this.srxHighlightRecrystalizedCheckBox.CheckedChanged += new System.EventHandler(this.srxHighlightRecrystalizedCheckBox_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 639);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(779, 559);
+            this.Controls.Add(this.srxGroupBox);
             this.Controls.Add(this.dpGroupBox);
             this.Controls.Add(this.mcGroupBox);
             this.Controls.Add(this.caGroupBox);
@@ -561,6 +792,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.mcGrainsNumericUpDown)).EndInit();
             this.dpGroupBox.ResumeLayout(false);
             this.dpGroupBox.PerformLayout();
+            this.srxGroupBox.ResumeLayout(false);
+            this.srxGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.srxAddTimesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxStepsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxAddEveryStepsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxNucleationsDiffNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxNucleationsAtStartNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.srxEnergyValueNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -602,8 +841,26 @@
         private System.Windows.Forms.Button dpSelectButton;
         private System.Windows.Forms.CheckBox dpChangeIdCheckBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox srxGroupBox;
+        private System.Windows.Forms.ComboBox srxEnergyDistributionComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox srxNucleationsAdditionsComboBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown srxEnergyValueNumericUpDown;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown srxStepsNumericUpDown;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown srxAddEveryStepsNumericUpDown;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown srxNucleationsDiffNumericUpDown;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown srxNucleationsAtStartNumericUpDown;
+        private System.Windows.Forms.Button srxSimulateButton;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown srxAddTimesNumericUpDown;
+        private System.Windows.Forms.CheckBox srxHighlightRecrystalizedCheckBox;
+        private System.Windows.Forms.Label label10;
     }
 }
 

@@ -59,6 +59,52 @@ namespace grain_growth
         {
             get { return this.dpChangeIdCheckBox.Checked; }
         }
+
+        private double SrxEnergyValue
+        {
+            get { return (double)this.srxEnergyValueNumericUpDown.Value; }
+        }
+
+        private int SrxNucleationsAtStart
+        {
+            get { return (int)this.srxNucleationsAtStartNumericUpDown.Value; }
+        }
+
+        private int SrxNucleationsDiff
+        {
+            get { return (int)this.srxNucleationsDiffNumericUpDown.Value; }
+        }
+
+        private int SrxAddEverySteps
+        {
+            get { return (int)this.srxAddEveryStepsNumericUpDown.Value; }
+        }
+
+        private int SrxAddTimes
+        {
+            get
+            {
+                if (this.srxAddTimesNumericUpDown.Enabled)
+                {
+                    return (int) this.srxAddTimesNumericUpDown.Value;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
+
+        private int SrxSteps
+        {
+            get { return (int)this.srxStepsNumericUpDown.Value; }
+        }
+
+        private bool SrxHighlightRecrystalized
+        {
+            get { return this.srxHighlightRecrystalizedCheckBox.Checked; }
+        }
+
         #endregion Properties
 
         private Grid grid;
@@ -101,6 +147,8 @@ namespace grain_growth
         {
             this.caNeighborhoodComboBox.SelectedIndex = 0;
             this.mcNeighborhoodComboBox.SelectedIndex = 0;
+            this.srxEnergyDistributionComboBox.SelectedIndex = 0;
+            this.srxNucleationsAdditionsComboBox.SelectedIndex = 0;
         }
 
 
@@ -177,7 +225,7 @@ namespace grain_growth
 
                     if (c.ID != 0)
                     {
-                        e.Graphics.FillRectangle(this.brushes[c.ID], x * this.GridZoom, y * this.GridZoom, this.GridZoom, this.GridZoom);                        
+                        e.Graphics.FillRectangle((c.Recrystalized && this.SrxHighlightRecrystalized) ? Brushes.Red : this.brushes[c.ID], x * this.GridZoom, y * this.GridZoom, this.GridZoom, this.GridZoom);                        
                     }
                 }
             }
@@ -296,16 +344,63 @@ namespace grain_growth
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Under this comment code writen very quickly and dirty
+        private void srxNucleationsAdditionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.srx.AddNucleations(10);
-            this.PB.Refresh();
+            if (this.srxNucleationsAdditionsComboBox.SelectedIndex == 0)
+            {
+                this.srxNucleationsDiffNumericUpDown.Enabled = false;
+                this.srxAddEveryStepsNumericUpDown.Enabled = false;
+                this.srxAddTimesNumericUpDown.Enabled = false;
+            }
 
+            else if (this.srxNucleationsAdditionsComboBox.SelectedIndex == 1)
+            {
+                this.srxNucleationsDiffNumericUpDown.Enabled = false;
+                this.srxAddEveryStepsNumericUpDown.Enabled = true;
+                this.srxAddTimesNumericUpDown.Enabled = true;
+            }
+
+            else
+            {
+                this.srxNucleationsDiffNumericUpDown.Enabled = true;
+                this.srxAddEveryStepsNumericUpDown.Enabled = true;
+                this.srxAddTimesNumericUpDown.Enabled = true;
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void srxSimulateButton_Click(object sender, EventArgs e)
         {
-            this.srx.Step();
+            this.srx.AddEnergy(this.SrxEnergyValue);
+
+            int nucleationsToAdd = this.SrxNucleationsAtStart;
+            int addCount = 0;
+
+            for (int i = 0; i < this.SrxSteps; ++i)
+            {
+                if ( i % this.SrxAddEverySteps == 0 && addCount++ < this.SrxAddTimes)
+                {
+                    this.srx.AddNucleations(nucleationsToAdd);
+                    this.PB.Refresh();
+
+                    if (this.srxNucleationsAdditionsComboBox.SelectedIndex == 2)
+                    {
+                        nucleationsToAdd += this.SrxNucleationsDiff;
+                    }
+
+                    else if (this.srxNucleationsAdditionsComboBox.SelectedIndex == 3)
+                    {
+                        nucleationsToAdd -= this.SrxNucleationsDiff;
+                    }
+                }
+
+                this.srx.Step();
+                this.PB.Refresh();
+            }
+        }
+
+        private void srxHighlightRecrystalizedCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
             this.PB.Refresh();
         }
     }

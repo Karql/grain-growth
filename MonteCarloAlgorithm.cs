@@ -30,7 +30,7 @@ namespace grain_growth
         {            
             foreach (Cell c in this.GetCellsToProcess())
             {
-                int[] neighborsId = c.MoorNeighborhood.Where(i => i.ID > 1).Select(i => i.ID).ToArray();
+                int[] neighborsId = c.MoorNeighborhood.Where(i => i.ID > 1 && !i.Selected).Select(i => i.ID).ToArray();
 
                 int e1 = neighborsId.Where(i => i != c.ID).Count();
                 int newId = neighborsId[RandomHelper.Next(neighborsId.Length)];
@@ -39,7 +39,7 @@ namespace grain_growth
                 if (e2 - e1 <= 0)
                 {
                     c.ID = newId;
-                }   
+                }
             }
         }
 
@@ -63,7 +63,7 @@ namespace grain_growth
         
         private bool IsCorrectRandomCell(Cell cell)
         {
-            return cell.ID > 1 && !cell.Selected && cell.MoorNeighborhood.Where(i => i.ID != cell.ID).Count() > 0;
+            return cell.ID > 1 && !cell.Selected && cell.MoorNeighborhood.Where(i => i.ID != cell.ID && !i.Selected).Count() > 0;
         }
     }
 }
